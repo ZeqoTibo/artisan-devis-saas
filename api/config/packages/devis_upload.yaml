@@ -1,0 +1,6 @@
+# Stockage des PDF devis : hors public/ (aucune URL directe).
+# - Dev : par défaut %kernel.project_dir%/var/uploads/devis (rien à définir).
+# - Prod : définir DEVIS_UPLOAD_DIR vers un chemin ABSOLU sur disque/volume persistant.
+parameters:
+    env(DEVIS_UPLOAD_DIR): '%kernel.project_dir%/var/uploads/devis'
+    devis.upload_dir: '%env(DEVIS_UPLOAD_DIR)%'

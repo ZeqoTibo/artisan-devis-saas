@@ -1,6 +1,9 @@
 api_platform:
     title: Hello API Platform
     version: 1.0.0
+    swagger:
+        # Conserve le JWT saisi dans « Authorize » après rechargement de /api/docs.
+        persist_authorization: true
     defaults:
         stateless: true
         cache_headers:
