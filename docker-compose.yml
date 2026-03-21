@@ -10,8 +10,7 @@ services:
       - ./api:/var/www/html
     environment:
       APP_ENV: dev
-      # À aligner avec .env Symfony une fois le projet créé
-      DATABASE_URL: mysql://symfony:symfony@database:3306/app?serverVersion=8.0&charset=utf8mb4
+      DATABASE_URL: ${DATABASE_URL}
     depends_on:
       database:
         condition: service_healthy
@@ -33,7 +32,7 @@ services:
     container_name: artisan_devis_db
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: app
+      MYSQL_DATABASE: devis_sass
       MYSQL_USER: symfony
       MYSQL_PASSWORD: symfony
       MYSQL_ROOT_PASSWORD: root
@@ -47,6 +46,22 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+
+  phpmyadmin:
+    image: phpmyadmin:5-apache
+    container_name: artisan_devis_phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: database
+      PMA_PORT: 3306
+      PMA_USER: symfony
+      PMA_PASSWORD: symfony
+      UPLOAD_LIMIT: 64M
+    ports:
+      - "8081:80"
+    depends_on:
+      database:
+        condition: service_healthy
 
   mailer:
     image: axllent/mailpit:latest
