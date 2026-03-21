@@ -1,0 +1,5 @@
+api/var/
+api/vendor/
+.git
+.idea
+.vscode
