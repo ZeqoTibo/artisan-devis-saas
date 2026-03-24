@@ -1,6 +1,7 @@
 api_platform:
-    title: Hello API Platform
+    title: API SASS
     version: 1.0.0
+    enable_scalar: true
     swagger:
         # Conserve le JWT saisi dans « Authorize » après rechargement de /api/docs.
         persist_authorization: true
